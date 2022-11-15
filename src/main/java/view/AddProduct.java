@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddProduct {
+    private static JFrame mainFrame;
     private JPanel mainPanel;
     private JTextField productNameTextField;
     private JTextField priceTextField;
@@ -19,6 +20,7 @@ public class AddProduct {
 
     public AddProduct() {
         performAction = new PerformAction();
+        mainFrame = new JFrame("Add product");
 
         addButton.addActionListener(new ActionListener() {
             @Override
@@ -31,9 +33,15 @@ public class AddProduct {
                 } catch (NumberFormatException err) {
                     clearTextFields();
                 }
+                JOptionPane.showConfirmDialog(mainFrame, "Success");
                 clearTextFields();
             }
         });
+
+        mainFrame.setContentPane(mainPanel);
+        mainFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        mainFrame.pack();
+        mainFrame.setVisible(true);
     }
 
     private void clearTextFields() {

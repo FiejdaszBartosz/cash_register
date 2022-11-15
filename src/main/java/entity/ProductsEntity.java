@@ -2,6 +2,8 @@ package entity;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "products", schema = "cash_register")
 
@@ -66,9 +68,7 @@ public class ProductsEntity {
         if (productId != that.productId) return false;
         if (Double.compare(that.price, price) != 0) return false;
         if (amount != that.amount) return false;
-        if (productName != null ? !productName.equals(that.productName) : that.productName != null) return false;
-
-        return true;
+        return Objects.equals(productName, that.productName);
     }
 
     @Override
