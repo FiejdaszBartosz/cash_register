@@ -50,12 +50,19 @@ public class ProductsList extends DefaultTableModel {
         }
     }
 
-    public boolean addProduct(ProductsEntity product){
+    public void addProduct(ProductsEntity product) throws NullPointerException {
         if(product == null)
-            return false;
-        else {
+            throw new NullPointerException();
+        else{
+            product.setAmount(1);
             data.add(product);
-            return true;
         }
+
+    }
+
+    public List<ProductsEntity> getProductList() { return data; }
+
+    public void clearList() {
+        data = new ArrayList<>();
     }
 }

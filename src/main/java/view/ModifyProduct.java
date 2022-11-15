@@ -1,6 +1,8 @@
 package view;
 
 import entity.ProductsEntity;
+import exceptions.LackOfProductException;
+import exceptions.UnknownProductException;
 import performAction.PerformAction;
 
 import javax.swing.*;
@@ -34,16 +36,16 @@ public class ModifyProduct {
 
                 try {
                     productsEntity = performAction.getProductById(Integer.parseInt(temp));
-                } catch (NumberFormatException err) {
-
-                }
-
-                if (productsEntity != null) {
                     nameTextField.setText(productsEntity.getProductName());
                     priceTextField.setText(String.valueOf(productsEntity.getPrice()));
                     amountTextField.setText(String.valueOf(productsEntity.getAmount()));
+                } catch (NumberFormatException | UnknownProductException err) {
+                    JOptionPane.showMessageDialog(
+                            mainFrame,
+                            "! Unknown ID !",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
                 }
-
             }
         });
 
